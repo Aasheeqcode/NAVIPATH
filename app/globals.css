@@ -1,0 +1,365 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 50% 98%; /* Snow white with blue tint */
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 201 100% 30%; /* Deep ocean blue */
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 187 100% 42%; /* Cyan/Turquoise */
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --accent: 196 100% 45%; /* Lighter blue */
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 201 100% 30%; /* Deep ocean blue */
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 210 40% 98%;
+    --sidebar-primary-foreground: 201 100% 30%;
+    --sidebar-accent: 201 100% 35%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 201 100% 25%;
+    --sidebar-ring: 210 40% 98%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 201 100% 45%; /* Deep ocean blue - lighter for dark mode */
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 187 100% 42%; /* Turquoise */
+    --secondary-foreground: 210 40% 98%;
+
+    --accent: 196 100% 50%; /* Lighter blue for dark mode */
+    --accent-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+
+    --sidebar-background: 222.2 84% 4.9%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 210 40% 98%;
+    --sidebar-primary-foreground: 222.2 84% 4.9%;
+    --sidebar-accent: 217.2 32.6% 17.5%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217.2 32.6% 17.5%;
+    --sidebar-ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Ocean wave animation */
+.wave {
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  bottom: 0;
+  left: 0;
+  background: url("/assets/wave.svg");
+  background-size: 1000px 100px;
+}
+
+.wave.wave1 {
+  animation: animate 30s linear infinite;
+  z-index: 1000;
+  opacity: 1;
+  animation-delay: 0s;
+  bottom: 0;
+}
+
+.wave.wave2 {
+  animation: animate2 15s linear infinite;
+  z-index: 999;
+  opacity: 0.5;
+  animation-delay: -5s;
+  bottom: 10px;
+}
+
+.wave.wave3 {
+  animation: animate 30s linear infinite;
+  z-index: 998;
+  opacity: 0.2;
+  animation-delay: -2s;
+  bottom: 15px;
+}
+
+.wave.wave4 {
+  animation: animate2 15s linear infinite;
+  z-index: 997;
+  opacity: 0.7;
+  animation-delay: -5s;
+  bottom: 20px;
+}
+
+@keyframes animate {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 1000px;
+  }
+}
+
+@keyframes animate2 {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: -1000px;
+  }
+}
+
+/* Pulse animation for CTA buttons */
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(var(--secondary), 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(var(--secondary), 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--secondary), 0);
+  }
+}
+
+/* Loading animation */
+.loading-ship {
+  animation: sail 3s ease-in-out infinite;
+}
+
+@keyframes sail {
+  0% {
+    transform: translateX(-100%) rotate(0deg);
+  }
+  50% {
+    transform: translateX(0) rotate(5deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(0deg);
+  }
+}
+
+/* Fade in animation for sections */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 3D card hover effect */
+.feature-card {
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px) rotateY(5deg);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Testimonial card flip */
+.testimonial-card {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.testimonial-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.testimonial-front,
+.testimonial-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.testimonial-back {
+  transform: rotateY(180deg);
+}
+
+/* Water ripple effect */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.5s, opacity 1s;
+}
+
+.ripple:active:after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
+}
+
+/* Navbar button hover effect */
+.nav-link {
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Login/Signup button hover effect */
+.auth-button {
+  transition: all 0.3s ease;
+}
+
+.auth-button:hover {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* Page transition animation */
+.page-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #0c4a6e, #0891b2);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s ease;
+}
+
+.page-transition.exit {
+  opacity: 0;
+}
+
+.sailing-boat {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  animation: sailing 3s ease-in-out infinite;
+}
+
+@keyframes sailing {
+  0% {
+    transform: translateX(-50px) rotate(-5deg);
+  }
+  50% {
+    transform: translateX(50px) rotate(5deg);
+  }
+  100% {
+    transform: translateX(-50px) rotate(-5deg);
+  }
+}
+
+.ocean-waves {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3));
+  overflow: hidden;
+}
+
+.ocean-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: url("/assets/wave.svg");
+  background-size: 50% 100%;
+  animation: wave 10s linear infinite;
+}
+
+.ocean-wave:nth-child(2) {
+  bottom: 10px;
+  opacity: 0.5;
+  animation-delay: -5s;
+  animation-duration: 7s;
+}
+
+.ocean-wave:nth-child(3) {
+  bottom: 20px;
+  opacity: 0.2;
+  animation-delay: -2s;
+  animation-duration: 15s;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
